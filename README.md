@@ -46,17 +46,17 @@ Diseñar e implementar una base de datos relacional mediante el uso de MySQL par
 
 ### 4.1. Modelo Entidad-Relación (E-R)
 
-![Figura 1. Diagrama Entidad-Relación del sistema M.A.S.S.](imagenes/pagina_03.png)
+<img width="652" height="423" alt="image" src="https://github.com/user-attachments/assets/812ab362-0860-4c13-9cf5-4e09d9c6b774" />
 
 *Figura 1. Diagrama Entidad-Relación del sistema M.A.S.S.*
 
 ### 4.2. Modelo relacional
 
-![Figura 2. Diagrama relacional](imagenes/pagina_04.png)
+<img width="625" height="429" alt="image" src="https://github.com/user-attachments/assets/14abd0e8-ae90-49c4-9c17-01fed8f49d06" />
 
 *Figura 2. Diagrama relacional.*
 
-![Figura 3. Diagrama relacional en cuadros](imagenes/pagina_05.png)
+<img width="625" height="481" alt="image" src="https://github.com/user-attachments/assets/d4da45a2-e2eb-4060-a49e-7d72b37b2c94" />
 
 *Figura 3. Diagrama relacional (cuadros). La página también contiene el comienzo del código DDL.*
 
@@ -193,7 +193,7 @@ VALUES
 π nombre1,apellido_paterno,fecha,hora (σ estado=="confirmada"(usuario⋈cliente⋈cita⋈horariomedico))
 ```
 
-![Figura 4. Resultado en Relational de la selección](imagenes/pagina_09.png)
+<img width="341" height="112" alt="image" src="https://github.com/user-attachments/assets/44f304f3-343c-485d-ab26-cc16ab61984d" />
 
 *Figura 4. Resultado Relational sobre el método de selección (página original con la consulta y su captura).*
 
@@ -207,8 +207,9 @@ INNER JOIN Cita c ON cl.id_cliente = c.id_cliente
 INNER JOIN HorarioMedico h ON c.id_horario = h.id_horario
 WHERE c.estado = 'confirmada';
 ```
+<img width="453" height="119" alt="image" src="https://github.com/user-attachments/assets/9786bf83-3735-4198-90ef-51c9f73122f0" />
 
-*Figura 5. El resultado de MariaDB se encuentra en la captura de la página 9, incluida arriba.*
+*Figura 5. Resultado mariadb sobre el método de selección*
 
 ### Consulta 2 — Proyección
 
@@ -219,8 +220,9 @@ WHERE c.estado = 'confirmada';
 ```text
 π nombre1,apellido_paterno,especialidad,fecha,hora(usuario⋈medico⋈horariomedico)
 ```
+<img width="449" height="243" alt="image" src="https://github.com/user-attachments/assets/b898021f-2cff-430a-bcd4-56a4dac5f916" />
 
-![Figuras 6 y 7. Resultados de proyección en Relational y MariaDB](imagenes/pagina_10.png)
+*Figura 6. Resultado relational sobre el método de proyección*
 
 **SQL:**
 
@@ -231,6 +233,9 @@ INNER JOIN Medico m ON u.cedula = m.cedula
 INNER JOIN HorarioMedico h ON m.ID_medico = h.ID_medico
 ORDER BY h.fecha, h.hora;
 ```
+<img width="605" height="180" alt="image" src="https://github.com/user-attachments/assets/cbbb2357-e92c-406e-87e8-f403d50aba89" />
+
+*Figura 7. Resultado mariadb sobre el método de proyección*
 
 ### Consulta 3 — Intersección y proyección
 
@@ -241,8 +246,9 @@ ORDER BY h.fecha, h.hora;
 ```text
 π nombre1,apellido_paterno(usuario⋈(π cedula(administrador)∩π cedula(medico)))
 ```
+<img width="188" height="246" alt="image" src="https://github.com/user-attachments/assets/a274dd7b-855f-45dd-9c5f-7adb93910fe8" />
 
-![Figura 8. Resultado Relational de la intersección](imagenes/pagina_11.png)
+*Figura 8. Resultado relational sobre el método de selección + proyección*
 
 **SQL:**
 
@@ -255,8 +261,9 @@ INNER JOIN (
     SELECT cedula FROM Medico
 ) AS roles ON u.cedula = roles.cedula;
 ```
+<img width="245" height="176" alt="image" src="https://github.com/user-attachments/assets/a1338bbc-3915-4691-9a12-b911e43ac958" />
 
-![Figura 9. Resultado MariaDB de la intersección](imagenes/pagina_12.png)
+*Figura 9. Resultado mariadb sobre el método de selección + proyección*
 
 ### Consulta 4 — Reunión natural y diferencia
 
@@ -267,8 +274,9 @@ INNER JOIN (
 ```text
 π id_horario,fecha,hora(horariomedico⋈(π id_horario(horariomedico)-π id_horario(cita)))
 ```
+<img width="174" height="76" alt="image" src="https://github.com/user-attachments/assets/1f93d9de-2823-4573-8d08-1c85fc61951c" />
 
-*Figura 10. El resultado en Relational aparece en la página 12, incluida arriba.*
+*Figura 10. Resultado relational sobre el método de reunión natural + diferencia*
 
 **SQL:**
 
@@ -280,8 +288,9 @@ WHERE h.id_horario NOT IN (
     SELECT c.id_horario FROM Cita c
 );
 ```
+<img width="334" height="204" alt="image" src="https://github.com/user-attachments/assets/49800e95-b187-4db3-a800-e0b7f89e719a" />
 
-![Figura 11. Resultado MariaDB de la diferencia](imagenes/pagina_13.png)
+*Figura 11. Resultado mariadb sobre el método de reunión natural + diferencia*
 
 ### Consulta 5 — Agrupamiento y función de agregación
 
@@ -305,7 +314,9 @@ GROUP BY m.especialidad;
 
 **Resultado esperado:** Se obtendrá un resumen de la cantidad total de citas médicas registradas por cada especialidad. Los registros se agruparán según la especialidad del médico y, mediante la función `COUNT`, se calculará el número de citas correspondientes a cada una. Con los datos actuales, se espera obtener ocho especialidades con una cita cada una. Esta consulta permitirá identificar cuáles especialidades tienen mayor demanda de atención médica a medida que se registren nuevas citas.
 
-![Figura 12. Resultado MariaDB del agrupamiento y agregación](imagenes/pagina_14.png)
+<img width="290" height="195" alt="image" src="https://github.com/user-attachments/assets/e8281302-8ee9-43b4-8f8d-6366cca9e80a" />
+
+*Figura 12. Resultado mariadb sobre el método de agrupación y agregación*
 
 ## 7. Conclusiones
 
