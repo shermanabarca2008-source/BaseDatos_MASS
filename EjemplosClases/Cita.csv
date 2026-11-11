@@ -1,0 +1,9 @@
+id_cita,estado,id_cliente,id_horario
+1,pendiente,1,1
+2,confirmada,2,2
+3,completada,3,3
+4,completada,4,4
+5,completada,5,5
+6,cancelada,6,6
+7,confirmada,7,7
+8,completada,8,8

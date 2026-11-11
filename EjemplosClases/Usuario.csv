@@ -1,0 +1,9 @@
+cedula,nombre1,nombre2,apellido_paterno,apellido_materno,direccion,fecha_nacimiento,contrasena
+1100000001,Carlos,Andres,Mendoza,Lopez,Loja,1985-03-12,hash_demo_01
+1100000002,Maria,Fernanda,Torres,Jimenez,Catamayo,1990-07-25,hash_demo_02
+1100000003,Juan,Pablo,Ramirez,Vega,Vilcabamba,1978-11-08,hash_demo_03
+1100000004,Ana,Lucia,Castillo,Mora,Loja,1995-02-14,hash_demo_04
+1100000005,Pedro,Luis,Gonzalez,Rojas,Saraguro,1982-09-30,hash_demo_05
+1100000006,Sofia,Isabel,Herrera,Diaz,Malacatos,2001-05-19,hash_demo_06
+1100000007,Luis,Alberto,Cueva,Paredes,Loja,1998-12-03,hash_demo_07
+1100000008,Daniela,Paola,Ortega,Ruiz,Catamayo,2000-06-21,hash_demo_08
